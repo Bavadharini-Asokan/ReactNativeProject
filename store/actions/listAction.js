@@ -23,12 +23,12 @@ const STORAGE_KEYS = {
     };
  }; 
 
- export const createList = (name, onSuccess = () => {}, onError = () => {}) => {
-    const name1 = "hello"
+ export const createList = (name,description, onSuccess = () => {}, onError = () => {}) => {
     return async dispatch => {
         try{
             const newList = {
                 name,
+                description,
                 id:`1ist-${new Date().getTime()}`
             };
             const { lists }= store.getState().list;

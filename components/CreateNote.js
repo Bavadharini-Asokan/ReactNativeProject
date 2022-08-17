@@ -6,11 +6,13 @@ import { createList } from '../store/actions/listAction';
 
 export default function Create({ navigation }){
     const [name,setName] = useState('');
+    const [description,setDescription] = useState('');
     const dispatch = useDispatch();
     const { lists } = useSelector(state => state.list);
     const submitHandler = () => {
         dispatch(createList(
             name,
+            description,
             () => {
                 ToastAndroid.show(`List Created`);
                 navigation.navigate('Home');
@@ -26,8 +28,8 @@ export default function Create({ navigation }){
             <View style={styles.view}><Text>Title</Text>
             <TextInput style={styles.textInput} value={name} onChangeText={(val) => setName(val)}></TextInput></View>
             <View style={styles.description}><Text>Description</Text>
-            <TextInput style={styles.textInput} multiline={true}></TextInput></View>
-            <View style={styles.buttonStyle}><Button title='Add Note' onPress={submitHandler}></Button></View>
+            <TextInput style={styles.textInput} multiline={true} value={description} onChangeText={(val) => setDescription(val)}></TextInput></View>
+            <View  style={styles.buttonStyle}><Button color='#00008B' title='Add Note' onPress={submitHandler}></Button></View>
         </View> 
     );
   }
@@ -51,14 +53,15 @@ const styles = StyleSheet.create({
       fontSize: 40,
      
     },
+    buttonStyle:{
+        marginTop: 383
+    },
     textInput: {
         borderBottomWidth: 0.5,
         borderBottomColor: 'grey',
         justifyContent: 'flex-end',
         flex: 1
     },
-    buttonStyle: {
-        justifyContent: 'flex-end',
-    }
+
   });
   

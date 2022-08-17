@@ -17,10 +17,10 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{...styles, title: 'ToDo List' }}
+          options={{...styles, title: 'To Do' }}
         />
         <Stack.Screen
-        name='AddNew'
+        name='Add New'
         component={Create}
         options={{...styles.headerStyle }}
         />
