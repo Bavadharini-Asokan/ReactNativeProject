@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './components/HomeScreen';
+import Create from './components/CreateNote';
+import {  StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './store';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <Provider store={store}>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{...styles, title: 'ToDo List' }}
+        />
+        <Stack.Screen
+        name='AddNew'
+        component={Create}
+        options={{...styles.headerStyle }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+    </Provider>
+      );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  headerStyle: {
+    backgroundColor: '#00008B',
   },
-});
+  headerTintColor: '#fff'
+
+})
